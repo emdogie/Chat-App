@@ -30,7 +30,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             Auth.auth().signIn(withEmail: email.text!, password: password.text!) {
                 (result, error) in
                 if (error != nil) {
-                    self.showAlert(withMessage: "Please check that you entered valid email and password", withTitle: "error")
+                    self.showAlert(withMessage: "Please check that you entered valid email and password", withTitle: "Error")
                     print("Error with signing in")
                 } else {
                     print("Logging on")
@@ -64,7 +64,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func showAlert(withMessage message: String, withTitle title: String) {
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: title, style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true)
         
     }
