@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var newUsername: UITextField!
@@ -29,7 +30,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             Auth.auth().signIn(withEmail: email.text!, password: password.text!) {
                 (result, error) in
                 if (error != nil) {
-                    self.showAlert(withMessage: "Please check that you entered valid email and password")
+                    self.showAlert(withMessage: "Please check that you entered valid email and password", withTitle: "error")
                     print("Error with signing in")
                 } else {
                     print("Logging on")
@@ -37,7 +38,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
-        
         
     }
     
@@ -47,24 +47,35 @@ class ViewController: UIViewController, UITextFieldDelegate {
             Auth.auth().createUser(withEmail: email.text!, password: password.text!) {
                 (result, error) in
                 if (error != nil) {
-                    self.showAlert(withMessage: "Please check that you entered valid email")
+                    self.showAlert(withMessage: "Please check that you entered valid email", withTitle: "Error")
                     print("Error with creating account")
                 } else {
+                    self.showAlert(withMessage: "Account created!", withTitle: "Good job!")
                     print("Account created!")
+                    self.addUsernameToBase(username: self.newUsername.text!)
                 }
             }
         } else {
-            self.showAlert(withMessage: "Fill all required blanks")
+            self.showAlert(withMessage: "Fill all required blanks", withTitle: "Error")
             print("Fill all required blanks")
         }
     }
     
-    func showAlert(withMessage message: String) {
+    func showAlert(withMessage message: String, withTitle title: String) {
         
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: title, style: .default, handler: nil))
         self.present(alert, animated: true)
         
+    }
+    
+    func addUsernameToBase(username: String) {
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        
+        let userID = Auth.auth().currentUser!.uid
+        
+        ref.child("users").child(userID).child("username").setValue(username)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

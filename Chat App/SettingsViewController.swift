@@ -7,7 +7,8 @@
 //
 
 import UIKit
-
+import FirebaseDatabase
+import FirebaseAuth
 class SettingsViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -16,7 +17,16 @@ class SettingsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func updateButton_click(_ sender: UIButton) {
+        
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        
+        let userID = Auth.auth().currentUser!.uid
+        
+        ref.child("users").child(userID).setValue("test")
+    }
+    
     /*
     // MARK: - Navigation
 
