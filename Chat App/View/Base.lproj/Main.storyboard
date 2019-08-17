@@ -48,9 +48,6 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="J6V-6l-Ako" secondAttribute="bottom" constant="25" id="sKZ-pv-oLH"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="Kmi-rO-7p5" kind="show" identifier="showChat" id="lg4-z3-5RU"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -106,6 +103,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6R-Im-7By">
                                 <rect key="frame" x="20" y="394" width="374" height="30"/>
                                 <state key="normal" title="Create Account"/>
+                                <connections>
+                                    <action selector="createAccountButton_click:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Uxb-eO-e3U"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -129,6 +129,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="email" destination="0dT-6Q-0Bp" id="FBw-OI-YUN"/>
+                        <outlet property="newUsername" destination="EpU-3q-hPc" id="F2u-qj-Jgt"/>
+                        <outlet property="password" destination="Sep-rt-bRY" id="2KK-qA-Iih"/>
                         <segue destination="zQe-6o-UQB" kind="show" identifier="showProfile" id="nsI-E4-EMM"/>
                     </connections>
                 </viewController>
@@ -139,22 +142,42 @@
         <!--Chat-->
         <scene sceneID="eOg-QX-sOU">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qDB-L1-9JM" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Chat" id="Kmi-rO-7p5" customClass="ChatViewController" customModule="Chat_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="M14-AI-IfP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HXg-5x-8T9">
-                                <rect key="frame" x="0.0" y="88" width="414" height="627.33333333333337"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="627.33333333333337"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="FLy-Pm-CwK">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="FLy-Pm-CwK" customClass="chatTableViewCell" customModule="Chat_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FLy-Pm-CwK" id="dBN-tm-FdD">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0GO-Da-roM">
+                                                    <rect key="frame" x="8" y="8.0000000000000018" width="360" height="27.666666666666671"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="0GO-Da-roM" secondAttribute="bottom" constant="8" id="Gjm-2M-nvt"/>
+                                                <constraint firstAttribute="trailing" secondItem="0GO-Da-roM" secondAttribute="trailing" constant="46" id="L2Y-RW-Hfn"/>
+                                                <constraint firstItem="0GO-Da-roM" firstAttribute="top" secondItem="dBN-tm-FdD" secondAttribute="top" constant="8" id="ZPO-YV-rjp"/>
+                                                <constraint firstItem="0GO-Da-roM" firstAttribute="leading" secondItem="dBN-tm-FdD" secondAttribute="leading" constant="8" id="fDm-Tf-nDq"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="messageText" destination="0GO-Da-roM" id="oGU-40-T95"/>
+                                            <outlet property="textMessage" destination="0GO-Da-roM" id="uBs-bO-wxe"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -163,13 +186,13 @@
                                 </connections>
                             </tableView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cke-Ro-IiI">
-                                <rect key="frame" x="20" y="775.33333333333337" width="244" height="30"/>
+                                <rect key="frame" x="20" y="731.33333333333337" width="244" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RI2-6E-LIf">
-                                <rect key="frame" x="284" y="775" width="34" height="30"/>
+                                <rect key="frame" x="284" y="731" width="34" height="30"/>
                                 <state key="normal" title="send"/>
                             </button>
                         </subviews>
@@ -189,8 +212,10 @@
                         <viewLayoutGuide key="safeArea" id="F8R-OW-sBb"/>
                     </view>
                     <navigationItem key="navigationItem" id="0ED-AB-JHj"/>
+                    <connections>
+                        <outlet property="tableView" destination="HXg-5x-8T9" id="24a-u3-2O8"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qDB-L1-9JM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1998.5507246376812" y="71.651785714285708"/>
         </scene>

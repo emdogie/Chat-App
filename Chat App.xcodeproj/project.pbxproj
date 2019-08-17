@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		63B5092423060B860049B44D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63B5092323060B860049B44D /* GoogleService-Info.plist */; };
 		63B50926230617390049B44D /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B50925230617390049B44D /* ProfileTableViewController.swift */; };
-		63B50928230617500049B44D /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B50927230617500049B44D /* ChatViewController.swift */; };
 		63B5092A230617590049B44D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B50929230617590049B44D /* SettingsViewController.swift */; };
 		63DF190B2305FC1800E09A45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF190A2305FC1800E09A45 /* AppDelegate.swift */; };
 		63DF190D2305FC1800E09A45 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF190C2305FC1800E09A45 /* ViewController.swift */; };
@@ -25,7 +24,6 @@
 		63B50922230604390049B44D /* Chat App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Chat App.entitlements"; sourceTree = "<group>"; };
 		63B5092323060B860049B44D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		63B50925230617390049B44D /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
-		63B50927230617500049B44D /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		63B50929230617590049B44D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		63DF19072305FC1800E09A45 /* Chat App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chat App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63DF190A2305FC1800E09A45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -66,13 +64,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		63B5092B23061AA30049B44D /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		63B5092C23061AA90049B44D /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -81,17 +72,6 @@
 				63DF19132305FC1A00E09A45 /* LaunchScreen.storyboard */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		63B5092D23061AAE0049B44D /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				63DF190C2305FC1800E09A45 /* ViewController.swift */,
-				63B50925230617390049B44D /* ProfileTableViewController.swift */,
-				63B50929230617590049B44D /* SettingsViewController.swift */,
-				63B50927230617500049B44D /* ChatViewController.swift */,
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		63DF18FE2305FC1700E09A45 = {
@@ -119,9 +99,10 @@
 				63B5092323060B860049B44D /* GoogleService-Info.plist */,
 				63DF190A2305FC1800E09A45 /* AppDelegate.swift */,
 				63DF19162305FC1A00E09A45 /* Info.plist */,
-				63B5092D23061AAE0049B44D /* Controller */,
+				63DF190C2305FC1800E09A45 /* ViewController.swift */,
+				63B50925230617390049B44D /* ProfileTableViewController.swift */,
+				63B50929230617590049B44D /* SettingsViewController.swift */,
 				63B5092C23061AA90049B44D /* View */,
-				63B5092B23061AA30049B44D /* Model */,
 			);
 			path = "Chat App";
 			sourceTree = "<group>";
@@ -249,7 +230,6 @@
 			files = (
 				63B50926230617390049B44D /* ProfileTableViewController.swift in Sources */,
 				63DF190D2305FC1800E09A45 /* ViewController.swift in Sources */,
-				63B50928230617500049B44D /* ChatViewController.swift in Sources */,
 				63B5092A230617590049B44D /* SettingsViewController.swift in Sources */,
 				63DF190B2305FC1800E09A45 /* AppDelegate.swift in Sources */,
 			);
