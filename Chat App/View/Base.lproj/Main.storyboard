@@ -91,7 +91,7 @@
                                 <rect key="frame" x="20" y="229" width="374" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chd-Ep-XtU">
                                 <rect key="frame" x="20" y="306" width="374" height="30"/>
@@ -142,7 +142,6 @@
         <!--Chat-->
         <scene sceneID="eOg-QX-sOU">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qDB-L1-9JM" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Chat" id="Kmi-rO-7p5" customClass="ChatViewController" customModule="Chat_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="M14-AI-IfP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -216,6 +215,7 @@
                         <outlet property="tableView" destination="HXg-5x-8T9" id="24a-u3-2O8"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qDB-L1-9JM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1998.5507246376812" y="71.651785714285708"/>
         </scene>

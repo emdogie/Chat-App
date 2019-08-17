@@ -8,7 +8,7 @@
 
 import UIKit
 import FirebaseAuth
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var newUsername: UITextField!
     @IBOutlet weak var email: UITextField!
@@ -16,13 +16,27 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
+        self.newUsername.delegate = self
+        self.email.delegate = self
+        self.password.delegate = self
     }
 
     @IBAction func loginButton_click(_ sender: UIButton) {
         
-        let email: String = "test1@gmail.com"
-        let password: String = "testowanie"
+        if (email.text! != "") && (password.text! != "") {
+            Auth.auth().signIn(withEmail: email.text!, password: password.text!) {
+                (result, error) in
+                if (error != nil) {
+                    self.showAlert(withMessage: "Please check that you entered valid email and password")
+                    print("Error with signing in")
+                } else {
+                    print("Logging on")
+                    self.performSegue(withIdentifier: "showProfile", sender: self)
+                }
+            }
+        }
         
         
     }
@@ -33,13 +47,31 @@ class ViewController: UIViewController {
             Auth.auth().createUser(withEmail: email.text!, password: password.text!) {
                 (result, error) in
                 if (error != nil) {
-                    print("Error with creating acc")
+                    self.showAlert(withMessage: "Please check that you entered valid email")
+                    print("Error with creating account")
                 } else {
-                    print("Acc created!")
+                    print("Account created!")
                 }
             }
         } else {
+            self.showAlert(withMessage: "Fill all required blanks")
             print("Fill all required blanks")
         }
     }
+    
+    func showAlert(withMessage message: String) {
+        
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true)
+        
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+       
+        textField.resignFirstResponder()
+        return true
+        
+    }
+    
 }
