@@ -11,6 +11,7 @@
 		63B50926230617390049B44D /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B50925230617390049B44D /* ProfileTableViewController.swift */; };
 		63B5092A230617590049B44D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B50929230617590049B44D /* SettingsViewController.swift */; };
 		63D8092A2308ACF0009B1F3D /* AvatarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D809292308ACF0009B1F3D /* AvatarViewController.swift */; };
+		63D8092E2309EF06009B1F3D /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D8092D2309EF06009B1F3D /* ChatViewController.swift */; };
 		63DF190B2305FC1800E09A45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF190A2305FC1800E09A45 /* AppDelegate.swift */; };
 		63DF190D2305FC1800E09A45 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF190C2305FC1800E09A45 /* ViewController.swift */; };
 		63DF19102305FC1800E09A45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63DF190E2305FC1800E09A45 /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 		63B50925230617390049B44D /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		63B50929230617590049B44D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		63D809292308ACF0009B1F3D /* AvatarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViewController.swift; sourceTree = "<group>"; };
+		63D8092D2309EF06009B1F3D /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		63DF19072305FC1800E09A45 /* Chat App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chat App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63DF190A2305FC1800E09A45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63DF190C2305FC1800E09A45 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				63B50925230617390049B44D /* ProfileTableViewController.swift */,
 				63B50929230617590049B44D /* SettingsViewController.swift */,
 				63D809292308ACF0009B1F3D /* AvatarViewController.swift */,
+				63D8092D2309EF06009B1F3D /* ChatViewController.swift */,
 				63B5092C23061AA90049B44D /* View */,
 			);
 			path = "Chat App";
@@ -235,6 +238,7 @@
 				63B50926230617390049B44D /* ProfileTableViewController.swift in Sources */,
 				63DF190D2305FC1800E09A45 /* ViewController.swift in Sources */,
 				63B5092A230617590049B44D /* SettingsViewController.swift in Sources */,
+				63D8092E2309EF06009B1F3D /* ChatViewController.swift in Sources */,
 				63DF190B2305FC1800E09A45 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

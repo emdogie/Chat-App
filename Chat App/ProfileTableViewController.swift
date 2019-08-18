@@ -78,6 +78,9 @@ class ProfileTableViewController: UITableViewController {
         }
     }
     
-  
+    @IBAction func goToConversation(_ sender: UIButton) {
+        performSegue(withIdentifier: "showConversation", sender: self)
+    }
+    
 
 }
