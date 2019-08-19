@@ -11,9 +11,14 @@ import FirebaseDatabase
 import FirebaseAuth
 class ProfileTableViewController: UITableViewController {
 
+    var users = [[String : String]]()
+    var chatDestinationUsername: String?
+    var chatDestinationUid: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateTitle()
+        updateUsers()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -30,14 +35,32 @@ class ProfileTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return users.count
     }
 
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let usernameAndId = users[indexPath.row]
+        chatDestinationUsername = usernameAndId.first?.key
+        chatDestinationUid = usernameAndId.first?.value
+        performSegue(withIdentifier: "showConversation", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is ChatViewController{
+            let vc = segue.destination as! ChatViewController
+            vc.chatWithUsername = chatDestinationUsername!
+            vc.chatWithUid = chatDestinationUid!
+        }
+    }
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
-         cell.textLabel?.text = "test"
+         let usernameAndId = users[indexPath.row]
+         cell.textLabel?.text = usernameAndId.first?.key
 
         return cell
     }
@@ -78,9 +101,25 @@ class ProfileTableViewController: UITableViewController {
         }
     }
     
-    @IBAction func goToConversation(_ sender: UIButton) {
-        performSegue(withIdentifier: "showConversation", sender: self)
+
+    func updateUsers() {
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        
+        ref.child("users").observe(.value) { (snapshot) in
+            
+            for child in snapshot.children {
+                let snap = child as! DataSnapshot
+                let usernames = snap.value as! [String : String]
+                let username = usernames.values.first!
+                let userID = snap.key
+                self.users.append([username : userID])
+            }
+            self.tableView.reloadData()
+        }
+        
+        
+       
     }
-    
 
 }

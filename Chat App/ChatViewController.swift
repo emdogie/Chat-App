@@ -13,17 +13,45 @@ import FirebaseAuth
 class ChatViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
-    var messages = [[String : String]]()
     @IBOutlet weak var messageText: UITextField!
+    
+    var messages = [[String : String]]()
+    var chatWithUsername: String = ""
+    var chatWithUid: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        searchForConversationBetween(firstID: Auth.auth().currentUser!.uid, secondID: chatWithUid)
         Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(lookForNewData), userInfo: nil, repeats: true)
         self.messageText.delegate = self
         tableView.separatorStyle = .none
         // Do any additional setup after loading the view.
     }
     
+    func searchForConversationBetween(firstID: String, secondID: String) {
+        
+        var conversations = [String]()
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        let firstOption = firstID + secondID
+        let secondOption = secondID + firstID
+        ref.child("messages").observe(.value) { (snapshot) in
+            if (snapshot.value != nil) {
+                for i in snapshot.children {
+                    let convIds = i as! DataSnapshot
+                    let convID = convIds.value as! String
+                    conversations.append(convID)
+                }
+            }
+            if conversations.contains(firstOption) || conversations.contains(secondOption) {
+                print("jest taka konwersacja")
+            } else {
+                print("dodaje konwersacje")
+                ref.child("messages").childByAutoId().setValue(firstID+secondID)
+            }
+        }
+        
+    }
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
