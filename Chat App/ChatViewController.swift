@@ -18,6 +18,7 @@ class ChatViewController: UIViewController, UITextFieldDelegate, UITableViewDele
     var messages = [[String : String]]()
     var chatWithUsername: String = ""
     var chatWithUid: String = ""
+    var conversationID: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,15 +40,21 @@ class ChatViewController: UIViewController, UITextFieldDelegate, UITableViewDele
             if (snapshot.value != nil) {
                 for i in snapshot.children {
                     let convIds = i as! DataSnapshot
-                    let convID = convIds.value as! String
-                    conversations.append(convID)
+                    let convID = convIds.key
+                    if conversations.contains(convID) != true {
+                        conversations.append(convID)
+                    }
+                    
                 }
             }
-            if conversations.contains(firstOption) || conversations.contains(secondOption) {
-                print("jest taka konwersacja")
-            } else {
-                print("dodaje konwersacje")
-                ref.child("messages").childByAutoId().setValue(firstID+secondID)
+            if conversations.contains(firstOption){
+                self.conversationID = firstOption
+            }
+            else if conversations.contains(secondOption) {
+                self.conversationID = secondOption
+            }
+            else {
+                ref.child("messages").child(firstOption).setValue("")
             }
         }
         
@@ -70,6 +77,8 @@ class ChatViewController: UIViewController, UITextFieldDelegate, UITableViewDele
         if double.first?.value == Auth.auth().currentUser?.uid {
             cell.textLabel!.text = double.first?.key
             cell.textLabel!.textAlignment = .right
+            cell.backgroundColor = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
+            cell.textLabel?.textColor = UIColor.white
         } else {
             cell.textLabel!.textAlignment = .left
             cell.textLabel!.text = double.first?.key
@@ -90,19 +99,20 @@ class ChatViewController: UIViewController, UITextFieldDelegate, UITableViewDele
         var ref: DatabaseReference!
         ref = Database.database().reference()
         
-        ref.child("users").child("messages").observe(.value){ (snapshot) in
+        ref.child("messages").child(conversationID).observe(.value){ (snapshot) in
             
             if (snapshot.value != nil) {
                 for i in snapshot.children {
                     let messageSnapshot = i as! DataSnapshot
-                    let newMessages = messageSnapshot.value as! [String : String]
-                    if (self.messages.contains(newMessages) != true) {
-                        self.messages.append(newMessages)
-                        self.tableView.reloadData()
+                    let message = messageSnapshot.value! as! [String : String]
+                    if self.messages.contains(message) != true {
+                        self.messages.append(message)
                     }
+                    
                 }
             }
         }
+        tableView.reloadData()
     }
     
     
@@ -110,26 +120,13 @@ class ChatViewController: UIViewController, UITextFieldDelegate, UITableViewDele
         var ref: DatabaseReference!
         ref = Database.database().reference()
         
-        let userID = Auth.auth().currentUser!.uid
+        let userID = Auth.auth().currentUser?.uid
         
         if messageText.text?.isEmpty != true {
-            ref.child("users").child("messages").childByAutoId().setValue([messageText.text : userID])
-            
-            
+            ref.child("messages").child(self.conversationID).childByAutoId().setValue([self.messageText.text! : userID])
         }
         
     }
     
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
